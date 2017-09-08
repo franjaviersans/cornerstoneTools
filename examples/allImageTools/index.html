@@ -31,6 +31,7 @@
                 <a id="pan" class="list-group-item">Pan</a>
                 <a id="zoom" class="list-group-item">Zoom</a>
                 <a id="enableLength" class="list-group-item">Length</a>
+                <a id="enableSpecialLength" class="list-group-item">Special Length</a>
                 <a id="probe" class="list-group-item">Probe</a>
                 <a id="circleroi" class="list-group-item">Elliptical ROI</a>
                 <a id="rectangleroi" class="list-group-item">Rectangle ROI</a>
@@ -41,6 +42,10 @@
             <div class="checkbox">
               <label><input type="checkbox" id="chkshadow">Apply shadow</label>
             </div>
+            <div class="checkbox">
+              <label><input type="checkbox" id="showguidelines">Show guidelines</label>
+            </div>
+            
             <br/>
         </div>
         <div class="col-xs-10">
@@ -78,6 +83,7 @@
                         <li>Pan - Pan the image</li>
                         <li>Zoom - Zoom the image</li>
                         <li>Length - Length measurement tool</li>
+                        <li>Special Length - Special length measurement tool</li>
                         <li>Probe - Display the image x,y coordinate under cursor as well as the pixel value (stored pixel and modality)</li>
                         <li>Elliptical ROI - An elliptical ROI that shows mean, stddev and area</li>
                         <li>Rectangle ROI - A rectangular ROI that shows mean, stddev and area</li>
@@ -138,9 +144,16 @@ is used by our example image loader-->
 
     $('#chkshadow').on('change', function(){
       cornerstoneTools.length.setConfiguration({shadow: this.checked});
+      cornerstoneTools.specialLength.setConfiguration({shadow: this.checked});
       cornerstoneTools.angle.setConfiguration({shadow: this.checked});
       cornerstone.updateImage(element);
     });
+
+    $('#showguidelines').on('change', function(){
+      cornerstoneTools.specialLength.toogleDrawGuideLines();
+      cornerstone.updateImage(element);
+    });
+
 
     // image enable the dicomImage element
     cornerstone.enable(element);
@@ -155,6 +168,7 @@ is used by our example image loader-->
         cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
         cornerstoneTools.probe.enable(element);
         cornerstoneTools.length.enable(element);
+        cornerstoneTools.specialLength.enable(element);
         cornerstoneTools.ellipticalRoi.enable(element);
         cornerstoneTools.rectangleRoi.enable(element);
         cornerstoneTools.angle.enable(element);
@@ -176,6 +190,7 @@ is used by our example image loader-->
             cornerstoneTools.zoom.activate(element, 4); // 4 is right mouse button
             cornerstoneTools.probe.deactivate(element, 1);
             cornerstoneTools.length.deactivate(element, 1);
+            cornerstoneTools.specialLength.deactivate(element, 1);
             cornerstoneTools.ellipticalRoi.deactivate(element, 1);
             cornerstoneTools.rectangleRoi.deactivate(element, 1);
             cornerstoneTools.angle.deactivate(element, 1);
@@ -203,6 +218,11 @@ is used by our example image loader-->
             activate('#enableLength')
             disableAllTools();
             cornerstoneTools.length.activate(element, 1);
+        });
+        $('#enableSpecialLength').click(function() {
+            activate('#enableSpecialLength')
+            disableAllTools();
+            cornerstoneTools.specialLength.activate(element, 1);
         });
         $('#probe').click(function() {
             activate('#probe')

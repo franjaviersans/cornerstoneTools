@@ -76,7 +76,7 @@ function pointNearTool (element, data, coords) {
   const distanceToPoint = cornerstoneMath.rect.distanceToPoint(rect, coords);
 
 
-  return (distanceToPoint < 5);
+  return (distanceToPoint < 3);
 }
 
 // /////// BEGIN IMAGE RENDERING ///////

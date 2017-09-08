@@ -120,6 +120,7 @@ export { highlight, highlightTouch } from './imageTools/highlight.js';
 export { default as imageStats } from './imageTools/imageStats.js';
 export { default as keyboardTool } from './imageTools/keyboardTool.js';
 export { length, lengthTouch } from './imageTools/length.js';
+export { specialLength, specialLengthTouch } from './imageTools/specialLength.js';
 export { magnify, magnifyTouchDrag } from './imageTools/magnify.js';
 export { default as mouseButtonRectangleTool } from './imageTools/mouseButtonRectangleTool.js';
 export { default as mouseButtonTool } from './imageTools/mouseButtonTool.js';

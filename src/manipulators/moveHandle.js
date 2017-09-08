@@ -1,6 +1,6 @@
 import * as cornerstone from '../cornerstone-core.js';
 
-export default function (mouseEventData, toolType, data, handle, doneMovingCallback, preventHandleOutsideImage) {
+export default function (mouseEventData, toolType, data, handle, doneMovingCallback, preventHandleOutsideImage, customMouseDragCallback) {
   const element = mouseEventData.element;
   const distanceFromTool = {
     x: handle.x - mouseEventData.currentPoints.image.x,
@@ -36,11 +36,11 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
     $(element).trigger(eventType, modifiedEventData);
   }
 
-  $(element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
+  $(element).on('CornerstoneToolsMouseDrag', customMouseDragCallback || mouseDragCallback);
 
   function mouseUpCallback () {
     handle.active = false;
-    $(element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
+    $(element).off('CornerstoneToolsMouseDrag', customMouseDragCallback || mouseDragCallback);
     $(element).off('CornerstoneToolsMouseUp', mouseUpCallback);
     $(element).off('CornerstoneToolsMouseClick', mouseUpCallback);
     cornerstone.updateImage(element);

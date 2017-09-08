@@ -58,7 +58,7 @@ function pointNearTool (element, data, coords) {
 
   let distanceToPoint = cornerstoneMath.lineSegment.distanceToPoint(lineSegment, coords);
 
-  if (distanceToPoint < 5) {
+  if (distanceToPoint < 3) {
     return true;
   }
 
@@ -67,7 +67,7 @@ function pointNearTool (element, data, coords) {
 
   distanceToPoint = cornerstoneMath.lineSegment.distanceToPoint(lineSegment, coords);
 
-  return (distanceToPoint < 5);
+  return (distanceToPoint < 3);
 }
 
 // /////// BEGIN IMAGE RENDERING ///////

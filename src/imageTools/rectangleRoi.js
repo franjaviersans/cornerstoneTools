@@ -60,7 +60,7 @@ function pointNearTool (element, data, coords) {
   const distanceToPoint = cornerstoneMath.rect.distanceToPoint(rect, coords);
 
 
-  return (distanceToPoint < 5);
+  return (distanceToPoint < 3);
 }
 
 // /////// BEGIN IMAGE RENDERING ///////
@@ -165,6 +165,29 @@ function onImageRendered (e, eventData) {
     context.strokeStyle = color;
     context.lineWidth = lineWidth;
     context.rect(leftCanvas, topCanvas, widthCanvas, heightCanvas);
+    context.stroke();
+
+    const lineSize = 6;
+
+        // Draw four lines in the quad
+    context.beginPath();
+    context.moveTo((handleStartCanvas.x + handleEndCanvas.x) / 2, handleStartCanvas.y + lineSize);
+    context.lineTo((handleStartCanvas.x + handleEndCanvas.x) / 2, handleStartCanvas.y - lineSize);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo((handleStartCanvas.x + handleEndCanvas.x) / 2, handleEndCanvas.y + lineSize);
+    context.lineTo((handleStartCanvas.x + handleEndCanvas.x) / 2, handleEndCanvas.y - lineSize);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(handleStartCanvas.x + lineSize, (handleStartCanvas.y + handleEndCanvas.y) / 2);
+    context.lineTo(handleStartCanvas.x - lineSize, (handleStartCanvas.y + handleEndCanvas.y) / 2);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(handleEndCanvas.x + lineSize, (handleStartCanvas.y + handleEndCanvas.y) / 2);
+    context.lineTo(handleEndCanvas.x - lineSize, (handleStartCanvas.y + handleEndCanvas.y) / 2);
     context.stroke();
 
         // If the tool configuration specifies to only draw the handles on hover / active,

@@ -5,7 +5,6 @@ import touchTool from './touchTool.js';
 import drawTextBox from '../util/drawTextBox.js';
 import toolStyle from '../stateManagement/toolStyle.js';
 import toolColors from '../stateManagement/toolColors.js';
-import drawHandles from '../manipulators/drawHandles.js';
 import { getToolState } from '../stateManagement/toolState.js';
 
 const toolType = 'length';
@@ -52,7 +51,7 @@ function pointNearTool (element, data, coords) {
   const distanceToPoint = cornerstoneMath.lineSegment.distanceToPoint(lineSegment, coords);
 
 
-  return (distanceToPoint < 25);
+  return (distanceToPoint < 3);
 }
 
 // /////// BEGIN IMAGE RENDERING ///////
@@ -96,13 +95,6 @@ function onImageRendered (e, eventData) {
     context.moveTo(handleStartCanvas.x, handleStartCanvas.y);
     context.lineTo(handleEndCanvas.x, handleEndCanvas.y);
     context.stroke();
-
-        // Draw the handles
-    const handleOptions = {
-      drawHandlesIfActive: (config && config.drawHandlesOnHover)
-    };
-
-    drawHandles(context, eventData, data.handles, color, handleOptions);
 
         // Draw the text
     context.fillStyle = color;
