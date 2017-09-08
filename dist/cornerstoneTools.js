@@ -9848,17 +9848,11 @@ function onImageRendered(e, eventData) {
       }
 
       if (data.active) {
-        linesize = 2.5;
+        linesize = 2;
         // Draw line at the end
         context.beginPath();
         context.arc(handleStartCanvas.x, handleStartCanvas.y, linesize, 0, 2 * Math.PI);
         context.stroke();
-        /*context.beginPath();
-        context.moveTo(handleEndCanvas.x + yv * linesize,
-                        handleEndCanvas.y + xv * linesize);
-        context.lineTo(handleEndCanvas.x + yv * -linesize,
-                        handleEndCanvas.y + xv * -linesize);
-        context.stroke();*/
       }
     }
 
@@ -10125,8 +10119,6 @@ function mouseDownCallback(e, eventData) {
         var prevDist = cornerstoneMath.point.distance(data.handles.start, data.handles.end);
 
         (0, _moveHandle2.default)(eventData, toolType, data, handle, handleDoneMove, false, function (e, eventData) {
-          console.log(e);
-          console.log(eventData);
           // Function to only rotate end size of the line
           if (handle.hasMoved === false) {
             handle.hasMoved = true;
