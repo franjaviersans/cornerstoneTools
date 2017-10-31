@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.9.0 - 2017-09-08 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.9.0 - 2017-10-30 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"));
@@ -9848,7 +9848,7 @@ function onImageRendered(e, eventData) {
       }
 
       if (data.active) {
-        linesize = 2;
+        linesize = 0.5;
         // Draw line at the end
         context.beginPath();
         context.arc(handleStartCanvas.x, handleStartCanvas.y, linesize, 0, 2 * Math.PI);

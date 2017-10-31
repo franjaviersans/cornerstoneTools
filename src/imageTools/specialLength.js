@@ -163,7 +163,7 @@ function onImageRendered (e, eventData) {
       }
 
       if(data.active) {
-        linesize = 2;
+        linesize = 0.5;
             // Draw line at the end
         context.beginPath();
         context.arc(handleStartCanvas.x, handleStartCanvas.y, linesize, 0, 2 * Math.PI);
